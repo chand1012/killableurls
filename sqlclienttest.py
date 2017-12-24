@@ -11,8 +11,8 @@ DB = ''
 url_id = 'XD1'
 
 with open('server0.json') as serverfile:
-    data = loads(serverfile)
-    HOST = data['main']
+    data = loads(serverfile.read())
+    HOST = data['ip']
     PASSWORD = data['pass']
     USER = data['user']
     DB = data['db']
@@ -21,7 +21,7 @@ try:
     connection = db.Connection(host=HOST,port=PORT,user=USER,passwd=PASSWORD,db=DB)
 
     dbhandler = connection.cursor()
-    dbhandler.execute("SELECT * FROM {}".format(url_id))
+    dbhandler.execute("SELECT {} FROM url".format(url_id))
     result = dbhandler.fetchall()
     for item in result:
         print(item)
