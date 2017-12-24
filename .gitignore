@@ -100,5 +100,6 @@ ENV/
 # mypy
 .mypy_cache/
 
-#Other project related stuff
+# Other project related stuff
 server0.json
+start.bat
