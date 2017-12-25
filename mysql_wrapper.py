@@ -24,8 +24,15 @@ def get_href_from_db(url_id='XD1'):
         return extract_href(result)
     except Exception as e:
         print(e)
-        return 'https://github.com/chand1012/killableurls'
+        return '/404'
 
 def extract_href(tup):
     test_thing = [x[0] for x in tup]
     return test_thing[0]
+
+'''
+def generate_url_id(chars=6):
+
+
+def new_url(url):
+'''

@@ -8,7 +8,7 @@ PASSWORD = ''
 PORT = 3306
 USER = ''
 DB = ''
-url_id = 'XD1'
+url_id = ''
 
 with open('server0.json') as serverfile:
     data = loads(serverfile.read())
