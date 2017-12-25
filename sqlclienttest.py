@@ -19,12 +19,11 @@ with open('server0.json') as serverfile:
 
 try:
     connection = db.Connection(host=HOST,port=PORT,user=USER,passwd=PASSWORD,db=DB)
-
     dbhandler = connection.cursor()
     dbhandler.execute("SELECT href FROM {}".format(url_id))
     result = dbhandler.fetchall()
-    for item in result:
-        print(item)
+    test_thing = [x[0] for x in result]
+    print(test_thing[0])
 except Exception as e:
     print(e)
 
