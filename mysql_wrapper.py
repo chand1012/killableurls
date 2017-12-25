@@ -6,24 +6,18 @@ PASSWD = ''
 DBPORT = 3306
 DBUSER = ''
 DB = ''
+jsonfile = 'server0.json'
+with open(jsonfile) as serverfile:
+    data = loads(serverfile.read())
+    DBHOST = data['ip']
+    PASSWD = data['pass']
+    DBUSER = data['user']
+    DB = data['db']
 
-def get_server_info(jsonfile='server.json'):
-    try:
-        with open(jsonfile) as serverfile:
-            data = loads(serverfile.read())
-            DBHOST = data['ip']
-            PASSWD = data['pass']
-            DBUSER = data['user']
-            DB = data['db']
-            if not data['port']==DBPORT:
-                DBPORT = data['port']
-            return True
-    except Exception as e:
-        return e
 
 def get_href_from_db(url_id='XD1'):
     try:
-        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+        connection = db.Connection(host=DBHOST,port=3306,user=DBUSER,passwd=PASSWD,db=DB)
         dbhandler = connection.cursor()
         dbhandler.execute("SELECT href FROM {}".format(url_id))
         result = dbhandler.fetchall()
