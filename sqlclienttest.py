@@ -21,7 +21,7 @@ try:
     connection = db.Connection(host=HOST,port=PORT,user=USER,passwd=PASSWORD,db=DB)
 
     dbhandler = connection.cursor()
-    dbhandler.execute("SELECT {} FROM url".format(url_id))
+    dbhandler.execute("SELECT href FROM {}".format(url_id))
     result = dbhandler.fetchall()
     for item in result:
         print(item)
