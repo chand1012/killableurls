@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 import mysql_wrapper as mysql
 app = Flask(__name__, static_url_path="")
-mysql.get_server_info('server0.json')
+
 
 @app.route("/<string:url_id>")
 def redir(url_id):
