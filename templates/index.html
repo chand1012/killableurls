@@ -1,0 +1,18 @@
+<html>
+<head>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='buttons.css') }}">
+  <title> Terminate.url </title>
+</head>
+
+<div class='container'>
+  <h1>
+    Terminate.url
+  </h1>
+  {% if num %}
+  <p> There are {{ num }} urls made with Terminate.url</p>
+  {% else %}
+  <p> Sorry, but we can't connect to the Database right now. Please try again in a few minutes.</p>
+  {% endif %}
+
+</div>
+</html>

@@ -17,18 +17,29 @@ with open(jsonfile) as serverfile:
 
 def get_href_from_db(url_id='XD1'):
     try:
-        connection = db.Connection(host=DBHOST,port=3306,user=DBUSER,passwd=PASSWD,db=DB)
+        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
         dbhandler = connection.cursor()
         dbhandler.execute("SELECT href FROM {}".format(url_id))
         result = dbhandler.fetchall()
-        return extract_href(result)
+        return extract_first(result)
     except Exception as e:
         print(e)
         return '/404'
 
-def extract_href(tup):
-    test_thing = [x[0] for x in tup]
-    return test_thing[0]
+def extract_first(tup):
+    thing = [x[0] for x in tup]
+    return thing[0]
+
+def get_url_amt():
+    try:
+        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+        dbhandler = connection.cursor()
+        dbhandler.execute('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = "{}"'.format(DB))
+        result = dbhandler.fetchall()
+        return extract_first(result)
+    except Exception as e:
+        print(e)
+        return None
 
 '''
 def generate_url_id(chars=6):
