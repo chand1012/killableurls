@@ -7,6 +7,14 @@ def index():
     num = mysql.get_url_amt()
     return render_template('index.html', num=num)
 
+@app.route("/new")
+def new():
+    return render_template('new.html')
+
+@app.route("/new/<string:url>")
+def generate(url):
+    
+
 @app.route("/details/<string:url_id>")
 def details(url_id):
     return render_template('details.html')

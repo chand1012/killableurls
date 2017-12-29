@@ -1,5 +1,8 @@
 import MySQLdb as db
 from json import loads
+from random import choice
+from chtimer import *
+import datetime
 
 DBHOST = ''
 PASSWD = ''
@@ -41,9 +44,28 @@ def get_url_amt():
         print(e)
         return None
 
-'''
+def get_tomorrow():
+    
+
+def get_url_info(url_id):
+
+
+
 def generate_url_id(chars=6):
+    urls = []
+    connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+    dbhandler = connection.cursor()
+    dbhandler.execute("SHOW TABLES")
+    for table,_ in dbhandler:
+        urls += [table]
+    while True:
+        uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
+        if uid in urls:
+            pass
+        else
+            return uid
+            break
 
 
-def new_url(url):
-'''
+def new_url(url, killdate=, killclicks=0, surl=None):
+    url_id = generate_url_id() # increase the char amount in production
