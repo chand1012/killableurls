@@ -11,9 +11,25 @@ def index():
 def new():
     return render_template('new.html')
 
-@app.route("/new/<string:url>")
-def generate(url):
+@app.route("/new/<string:url>/<string:date>")
+def generate(url, date):
+    gen_url_id = ""
+    if date == "":
+        gen_url_id = mysql.new_url(url)
+    else:
+        gen_url_id = mysql.new_url(url, date)
+
+    if gen_url_id==None:
+        redirect("/error")
+    else:
+        redirect("/details/new/{}".format(gen_url_id))
+
+
+
+@app.route("/details/new/<string:url_id>")
+def created(url_id):
     
+    render_template('new_url.html', url_id=url_id, date=)
 
 @app.route("/details/<string:url_id>")
 def details(url_id):

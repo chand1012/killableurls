@@ -9,7 +9,7 @@ A url shortener that you can terminate.
 - A [MySQL](https://www.mysql.com/) database to work with
 
 ### What needs done
-- **Time functions need to be converted to UTC**
+- ~~**Time functions need to be converted to UTC**~~ We'll assume EST for now
 - Url creation functions need finished
 - Url info function needs finished
 - webpages need to be made and styled (_Ads need to be a thing to cover cost_)

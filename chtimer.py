@@ -5,13 +5,17 @@ import datetime
 queue = {}
 
 def to_datetime(convertstring):
-    # string format: "24:00 12/31/2017 "
+    # string format: "24:00 12/31/2017" or "24:00_12/31/2017"
+    # will be converted to utc later
     hr = int(convertstring[:2])
     mt = int(convertstring[3:5])
     mth = int(convertstring[5:8])
     d = int(convertstring[9:11])
     yr = int(convertstring[12:])
     return datetime.datetime(yr, mth, d, hr, mt)
+
+def to_chstring(convertdate): # http://strftime.org
+    return convertdate.strftime("%H:%M %m/%d/%Y")
 
 def execute_all(funcs):
     for f in funcs:

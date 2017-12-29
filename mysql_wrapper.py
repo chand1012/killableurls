@@ -4,6 +4,7 @@ from random import choice
 from chtimer import *
 import datetime
 
+MHOST = ''
 DBHOST = ''
 PASSWD = ''
 DBPORT = 3306
@@ -12,6 +13,7 @@ DB = ''
 jsonfile = 'server0.json'
 with open(jsonfile) as serverfile:
     data = loads(serverfile.read())
+    MHOST = data['domain']
     DBHOST = data['ip']
     PASSWD = data['pass']
     DBUSER = data['user']
@@ -45,27 +47,47 @@ def get_url_amt():
         return None
 
 def get_tomorrow():
-    
+    a = datetime.datetime.now()
+    b = a + datetime.timedelta(1,0)
+    return to_chstring(b)
 
-def get_url_info(url_id):
 
-
+def get_url_info(url_id, info):
 
 def generate_url_id(chars=6):
     urls = []
-    connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
-    dbhandler = connection.cursor()
-    dbhandler.execute("SHOW TABLES")
-    for table,_ in dbhandler:
-        urls += [table]
-    while True:
-        uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
-        if uid in urls:
-            pass
-        else
-            return uid
-            break
+    try:
+        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+        dbhandler = connection.cursor()
+        dbhandler.execute("SHOW TABLES")
+        for table,_ in dbhandler:
+            urls += [table]
+        while True:
+            uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
+            if uid in urls:
+                pass
+            else:
+                return uid
+                break
+    except Exception as e:
+        print(e)
+        return None
 
 
-def new_url(url, killdate=, killclicks=0, surl=None):
-    url_id = generate_url_id() # increase the char amount in production
+def new_url(url, killdate=get_tomorrow(), killclicks=0, surl=None):
+    url_id = generate_url_id() # increase the char amount in production, or just make it increase when we need more
+    if not url_id==None:
+        try:
+            connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+            dbhandler = connection.cursor()
+            query = "CREATE TABLE {} (href VARCHAR(2000), killdate CHAR(16), killclicks SMALLINT(), alturl VARCHAR(2000)".format(url_id) #possibly add a way to save the IP
+            dbhandler.execute(query)
+            query = "INSERT INTO {} (href, killdate, killclicks, alturl) VALUES ({}, {}, {}, {})".format(url_id, killdate, killclicks, surl)
+            dbhandler.execute(query)
+            return url_id
+        except Exception as e:
+            print(e)
+            return None
+    else:
+        print("Url generator errored out, they're gonna have to retry.")
+        return None
