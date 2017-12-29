@@ -52,7 +52,8 @@ def get_tomorrow():
     return to_chstring(b)
 
 
-def get_url_info(url_id, info):
+def get_url_killdate(url):
+    
 
 def generate_url_id(chars=6):
     urls = []
