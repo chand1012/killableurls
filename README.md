@@ -12,6 +12,6 @@ A url shortener that you can terminate.
 - **Time functions need to be converted to UTC**
 - Url creation functions need finished
 - Url info function needs finished
-- webpages need to be made and styled (__Ads need to be a thing to cover cost__)
+- webpages need to be made and styled (_Ads need to be a thing to cover cost_)
 - Database needs to be migrated off my Raspberry Pi
 - Deployment.
