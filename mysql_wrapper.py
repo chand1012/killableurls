@@ -63,8 +63,9 @@ def get_url_killdate(url_id):
         print(e)
         return 'DATE NOT FOUND'
 
-def generate_url_id(chars=6):
+def generate_url_id(chars=6, custom=None):
     urls = []
+    uid = ""
     try:
         connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
         dbhandler = connection.cursor()
@@ -72,9 +73,15 @@ def generate_url_id(chars=6):
         for table in dbhandler:
             urls += [table]
         while True:
-            uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
-            if uid in urls:
+            if custom==None:
+                uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
+            else:
+                uid = custom
+            if uid in urls and custom==None:
                 pass
+            elif uid in urls and custom!=None:
+                return 1
+                break
             else:
                 return uid
                 break
@@ -83,20 +90,27 @@ def generate_url_id(chars=6):
         return None
 
 
-def new_url(url, killdate=get_tomorrow(), killclicks=0, surl=None):
-    url_id = generate_url_id() # increase the char amount in production, or just make it increase when we need more
-    if not url_id==None:
+def new_url(url, killdate=get_tomorrow(), killclicks=0, surl="/404", gen_length=6, custom=None):
+    url_id = generate_url_id(gen_length, custom) # increase the char amount in production, or just make it increase when we need more
+    if not "http" in url:
+        url = "http://" + url
+
+    if str(type(url_id))=="<class 'str'>":
         try:
             connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
             dbhandler = connection.cursor()
-            query = "CREATE TABLE {} (href VARCHAR(2000), killdate CHAR(16), killclicks SMALLINT(), alturl VARCHAR(2000))".format(url_id) #possibly add a way to save the IP
+            query = "CREATE TABLE {} (href VARCHAR(2000), killdate CHAR(16), killclicks INT(12), alturl VARCHAR(2000))".format(url_id) #possibly add a way to save the IP
             dbhandler.execute(query)
-            query = "INSERT INTO {} (href, killdate, killclicks, alturl) VALUES ({}, {}, {}, {})".format(url_id, killdate, killclicks, surl)
+            query = "INSERT INTO %s VALUES('%s', '%s', %d, '%s')" % (url_id, url, killdate, killclicks, surl)
             dbhandler.execute(query)
+            connection.commit()
             return url_id
         except Exception as e:
             print(e)
             return None
+    elif url_id==1:
+        print("Custom url already taken!")
+        return 1
     else:
         print("Url generator errored out, they're gonna have to retry.")
         return None

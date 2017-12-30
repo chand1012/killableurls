@@ -25,11 +25,10 @@ def generate(url, date):
         redirect("/details/new/{}".format(gen_url_id))
 
 
-
 @app.route("/details/new/<string:url_id>")
 def created(url_id):
-    
-    render_template('new_url.html', url_id=url_id, date=)
+    killdate = mysql.get_url_killdate(url_id)
+    render_template('new_url.html', url_id=url_id, date=killdate)
 
 @app.route("/details/<string:url_id>")
 def details(url_id):
