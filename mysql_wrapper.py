@@ -52,8 +52,16 @@ def get_tomorrow():
     return to_chstring(b)
 
 
-def get_url_killdate(url):
-    
+def get_url_killdate(url_id):
+    try:
+        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+        dbhandler = connection.cursor()
+        dbhandler.execute("SELECT killdate FROM {}".format(url_id))
+        result = dbhandler.fetchall()
+        return extract_first(result)
+    except Exception as e:
+        print(e)
+        return 'DATE NOT FOUND'
 
 def generate_url_id(chars=6):
     urls = []
@@ -61,7 +69,7 @@ def generate_url_id(chars=6):
         connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
         dbhandler = connection.cursor()
         dbhandler.execute("SHOW TABLES")
-        for table,_ in dbhandler:
+        for table in dbhandler:
             urls += [table]
         while True:
             uid = ''.join(choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for i in range(chars))
@@ -81,7 +89,7 @@ def new_url(url, killdate=get_tomorrow(), killclicks=0, surl=None):
         try:
             connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
             dbhandler = connection.cursor()
-            query = "CREATE TABLE {} (href VARCHAR(2000), killdate CHAR(16), killclicks SMALLINT(), alturl VARCHAR(2000)".format(url_id) #possibly add a way to save the IP
+            query = "CREATE TABLE {} (href VARCHAR(2000), killdate CHAR(16), killclicks SMALLINT(), alturl VARCHAR(2000))".format(url_id) #possibly add a way to save the IP
             dbhandler.execute(query)
             query = "INSERT INTO {} (href, killdate, killclicks, alturl) VALUES ({}, {}, {}, {})".format(url_id, killdate, killclicks, surl)
             dbhandler.execute(query)
