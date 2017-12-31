@@ -56,6 +56,9 @@ def favicon():
 def buttons():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'buttons.css', mimetype='text/css')
 
+@app.route('/marketing.css')
+def marketing():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'marketing.css', mimetype="text/css")
 
 if __name__=="__main__":
     app.run(host="0.0.0.0",port=8080)

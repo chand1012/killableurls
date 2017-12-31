@@ -1,0 +1,62 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Kill-A-Url: Urls with expiration dates </title>
+  <style>
+        html {
+          width: 75%;
+          background-color: #1D1F20;
+          font-family: "Arial", Arial, sans-serif;
+          color: whitesmoke;
+          text-align: center;
+          box-sizing: border-box;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          padding: 20px;
+        }
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }
+
+    </style>
+</head>
+
+<div class='main'>
+  <h1>
+    Kill-A-Url
+  </h1>
+  <h2> {{ tagline }} </h2>
+  {% if num %}
+  <p> There are {{ num }} urls made with Kill-A-Url</p>
+  {% else %}
+  <p> Sorry, but we can't connect to the Database right now. Please try again in a few minutes.</p>
+  {% endif %}
+  <a class="button-success pure-button" href="/new">Lets go!</a>
+  <a class="button-secondary pure-button" href="https://twitter.com/thatkidCh1z"> Twitter </a>
+</div>
+</html>
