@@ -90,7 +90,7 @@ def generate_url_id(chars=6, custom=None):
         return None
 
 
-def new_url(url, killdate=get_tomorrow(), killclicks=0, surl="/404", gen_length=6, custom=None):
+def new_url(url, killdate=get_tomorrow(), killclicks=0, surl="/k", gen_length=6, custom=None):
     url_id = generate_url_id(gen_length, custom) # increase the char amount in production, or just make it increase when we need more
     if not "http" in url:
         url = "http://" + url

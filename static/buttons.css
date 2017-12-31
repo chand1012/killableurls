@@ -11,7 +11,7 @@
   --color-alge: #7999a9;
   --color-flower: #353866;
   --color-smoke: #e4e4e4;
-  --font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-face: "Sans-Serif"; 
 }
 html {
   box-sizing: border-box;
@@ -53,6 +53,17 @@ h1 {
   font-weight: 700;
 }
 h1 span {
+  font-weight: 400;
+}
+h2 {
+  text-align: center;
+  transition: opacity 300ms linear;
+  color: var(--color-dark);
+  font-family: var(--font-face);
+  font-size: 32px;
+  font-weight: 700;
+}
+h2 span {
   font-weight: 400;
 }
 p {
