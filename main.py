@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, send_from_directory, url_for
 from random import choice
 import mysql_wrapper as mysql
 import os
+import chtimer
 app = Flask(__name__, static_url_path="")
 
 @app.route("/")
@@ -14,14 +15,17 @@ def index():
 def new():
     return render_template('new.html')
 
-@app.route("/new/<string:url>/<string:date>")
-def generate(url, date):
-    gen_url_id = ""
-    if date == "":
-        gen_url_id = mysql.new_url(url)
+@app.route("/new/<string:url>")
+def generate(url):
+    gen_url_id = mysql.new_url(url)
+    if gen_url_id==None:
+        redirect("/error")
     else:
-        gen_url_id = mysql.new_url(url, date)
+        redirect("/details/new/{}".format(gen_url_id))
 
+@app.route("/new/<string:url>/<string:date>")
+def generate_main(url, date):
+    gen_url_id = mysql.new_url(url, date)
     if gen_url_id==None:
         redirect("/error")
     else:
@@ -46,6 +50,8 @@ def page_not_found():
 
 @app.route("/<string:url_id>")
 def redir(url_id):
+    killdate = mysql.get_url_killdate(url_id)
+
     return redirect(mysql.get_href_from_db(url_id))
 
 @app.route('/favicon.ico')
@@ -61,4 +67,4 @@ def marketing():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'marketing.css', mimetype="text/css")
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0",port=8080)
+    app.run()
