@@ -183,6 +183,7 @@ a.pure-button-primary {
     top: 87%;
     width: 100%;
     min-height: 12%;
+    max-height: 2000px;
     z-index: 2;
     background: white;
 

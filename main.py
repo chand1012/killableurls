@@ -9,7 +9,9 @@ app = Flask(__name__, static_url_path="")
 def index():
     num = mysql.get_url_amt()
     tagline = choice(["Killable urls.", "Terminate a link with ease.", "Click to kill.", "Urls with expiration dates."])
-    return render_template('index.html', num=num, tagline=tagline)
+    otherline = choice(["the slaughter of young-links", "killable urls", "killable urls", "killable urls", "killable urls", "killable urls", "killable urls", "links with expiration dates", "links with expiration dates", "links with expiration dates", "links with expiration dates", "links with expiration dates"])
+    execute = "The link to be killed."
+    return render_template('index.html', num=num, tagline=tagline, otherline=otherline, execute=execute)
 
 @app.route("/new")
 def new():

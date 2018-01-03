@@ -5,19 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A layout example that shows off a responsive product landing page.">
     <title>KillaUrl: Urls with expiration dates</title>
-
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
-
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <!--<![endif]-->
-
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
-
     <link rel="stylesheet" href="{{url_for('static', filename='marketing.css')}}">
     <script type="text/javascript">
 
@@ -25,14 +16,13 @@
         var shortenlink = document.getElementById("link").value;
         window.location.replace("/new/" + shortenlink + "/");
       }
+
+      var newCustomLink = function(){ //This is for a link with custom date, and potentally custom path.
+
+      }
     </script>
 </head>
 <body>
-
-
-
-
-
 
 
 
@@ -64,44 +54,44 @@
 
 <div class="content-wrapper">
     <div class="content">
-        <h2 class="content-head is-center">Excepteur sint occaecat cupidatat.</h2>
+        <h2 class="content-head is-center">Other than {{ otherline }}, why should we use this site?</h2>
 
         <div class="pure-g">
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 
                 <h3 class="content-subhead">
                     <i class="fa fa-rocket"></i>
-                    Get Started Quickly
+                    These links are quick!
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    In both load times and lifespan!
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-mobile"></i>
-                    Responsive Layouts
+                    Cross platform!
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    All you need is an internet connection a browser that's newer than Internet Explorer 8.
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-th-large"></i>
-                    Modular
+                    Customizable!
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    Links can last minutes* to days to weeks or even months!
                 </p>
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
                     <i class="fa fa-check-square-o"></i>
-                    Plays Nice
+                    Accountless!
                 </h3>
                 <p>
-                    Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    We don't force you to make an account, though in the future we may add it for easier link termination!
                 </p>
             </div>
         </div>
@@ -116,7 +106,7 @@
             <h2 class="content-head content-head-ribbon">Laboris nisi ut aliquip.</h2>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <!-- Find a use for this section! (may be good for some ads)-->
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                 consequat. Duis aute irure dolor.
@@ -125,41 +115,36 @@
     </div>
 
     <div class="content">
-        <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
+        <h2 class="content-head is-center">Custom Date*</h2>
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
                 <form class="pure-form pure-form-stacked">
                     <fieldset>
 
-                        <label for="name">Your Name</label>
-                        <input id="name" type="text" placeholder="Your Name">
+                        <label for="link">{{ execute }}</label>
+                        <input id="link" type="text" placeholder="Your Name"><!-- This needs to be working-->
+
+                        <label for="date">Date</label>
+                        <input id="date" type="text" placeholder="mm/dd/year">
 
 
-                        <label for="email">Your Email</label>
-                        <input id="email" type="email" placeholder="Your Email">
-
-                        <label for="password">Your Password</label>
-                        <input id="password" type="password" placeholder="Your Password">
-
-                        <button type="submit" class="pure-button">Sign Up</button>
+                        <input type="submit" class="pure-button">Create!</button>
                     </fieldset>
                 </form>
             </div>
 
             <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                <h4>Contact Us</h4>
+                <h4></h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
+                    To make a custom shortened url, paste it into the top box,
+                    then type out the date in the order of MM/DD/YEAR, using all four (maybe more, hello future dwellers!)
+                    number for the year. The just click Create!
                 </p>
 
-                <h4>More Information</h4>
+                <h4>Made with <i class="em em-black_heart"></i> in Randolph, Ohio.</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
+                    Social Media coming soon!
                 </p>
             </div>
         </div>
@@ -167,7 +152,7 @@
     </div>
 
     <div class="footer l-box is-center">
-        View the source of this layout to learn more. Made with love by the YUI Team.
+        *At the moment, minimum link time is 24 hours. Fully custom links, including a custom kill date, number of clicks to kill, custom alternate url, and custom endings will become avalable for free at a later date.
     </div>
 
 </div>
