@@ -1,6 +1,2 @@
 flask
-os
 mysqlclient
-random
-datetime
-urllib
