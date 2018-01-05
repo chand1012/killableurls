@@ -70,4 +70,4 @@ def marketing():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'marketing.css', mimetype="text/css")
 
 if __name__=="__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=80)
