@@ -4,6 +4,7 @@ from random import choice
 from chtimer import *
 import datetime
 from urllib import parse
+import os
 
 parse.uses_netloc.append("postgres")
 url = parse.urlparse(os.environ["DATABASE_URL"])
