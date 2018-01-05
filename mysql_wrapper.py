@@ -1,23 +1,27 @@
 import MySQLdb as db
-from json import loads
+#from json import loads
 from random import choice
 from chtimer import *
 import datetime
+from urllib import parse
 
-MHOST = ''
-DBHOST = ''
-PASSWD = ''
-DBPORT = 3306
-DBUSER = ''
-DB = ''
-jsonfile = 'server0.json'
-with open(jsonfile) as serverfile:
-    data = loads(serverfile.read())
-    MHOST = data['domain']
-    DBHOST = data['ip']
-    PASSWD = data['pass']
-    DBUSER = data['user']
-    DB = data['db']
+parse.uses_netloc.append("postgres")
+url = parse.urlparse(os.environ["DATABASE_URL"])
+
+#MHOST = ''
+DBHOST = url.hostname
+PASSWD = url.password
+DBPORT = url.port
+DBUSER = url.username
+DB = url.path[1:]
+#jsonfile = 'server0.json'
+#with open(jsonfile) as serverfile:
+#    data = loads(serverfile.read())
+#    MHOST = data['domain']
+#    DBHOST = data['ip']
+#    PASSWD = data['pass']
+#    DBUSER = data['user']
+#    DB = data['db']
 
 
 def get_href_from_db(url_id='XD1'):

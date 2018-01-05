@@ -40,7 +40,8 @@ def killed():
 @app.route("/details/new/<string:url_id>")
 def created(url_id):
     killdate = mysql.get_url_killdate(url_id)
-    render_template('new_url.html', url_id=url_id, date=killdate)
+    otherline = choice(["the slaughter of young-links", "killable urls", "killable urls", "killable urls", "killable urls", "killable urls", "killable urls", "links with expiration dates", "links with expiration dates", "links with expiration dates", "links with expiration dates", "links with expiration dates"])
+    render_template('details.html', url_id=url_id, date=killdate, otherline=otherline)
 
 @app.route("/details/<string:url_id>")
 def details(url_id):

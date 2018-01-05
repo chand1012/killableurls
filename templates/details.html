@@ -1,7 +1,150 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="../buttons.css">
-  <title> Link Details </title>
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>KillaUrl: The Deets</title>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='marketing.css')}}">
 
+</head>
+<body>
+
+
+
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">KillaUrl</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item"><a href="http://chand1012.github.io/" class="pure-menu-link">About us</a></li>
+            <li class="pure-menu-item"><a href="https://github.com/chand1012/killableurls" class="pure-menu-link">Github</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">  </h1>
+        <p class="splash-subhead">
+            Termination date: {{ date }}
+        </p>
+        <p>
+            <a href="/" class="pure-button pure-button-primary">Make another!</a>
+        </p>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">Other than {{ otherline }}, why should we use this site?</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    These links are quick!
+                </h3>
+                <p>
+                    In both load times and lifespan!
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+                    Cross platform!
+                </h3>
+                <p>
+                    All you need is an internet connection a browser that's newer than Internet Explorer 8.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-th-large"></i>
+                    Customizable!
+                </h3>
+                <p>
+                    Links can last minutes* to days to weeks or even months!
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-check-square-o"></i>
+                    Accountless!
+                </h3>
+                <p>
+                    We don't force you to make an account, though in the future we may add it for easier link termination!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <!--<img width="300" alt="File Icons" class="pure-img-responsive" src="img/common/file-icons.png">-->
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <h2 class="content-head content-head-ribbon"></h2>
+
+            <p>
+              <!--ads will go here-->
+            </p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="content-head is-center">Custom Date*</h2>
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                <form class="pure-form pure-form-stacked">
+                    <fieldset>
+
+                        <label for="link">{{ execute }}</label>
+                        <input id="link" type="text" placeholder="Your Name"><!-- This needs to be working-->
+
+                        <label for="date">Date</label>
+                        <input id="date" type="text" placeholder="mm/dd/year">
+
+
+                        <input type="submit" class="pure-button">Create!</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                <h4></h4>
+                <p>
+                    To make a custom shortened url, paste it into the top box,
+                    then type out the date in the order of MM/DD/YEAR, using all four (maybe more, hello future dwellers!)
+                    number for the year. The just click Create!
+                </p>
+
+                <h4>Made with <i class="em em-black_heart"></i> in Randolph, Ohio.</h4>
+                <p>
+                    Social Media coming soon!
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer l-box is-center">
+        *At the moment, minimum link time is 24 hours. Fully custom links, including a custom kill date, number of clicks to kill, custom alternate url, and custom endings will become avalable for free at a later date.
+    </div>
+
+</div>
+
+
+
+
+</body>
 </html>
