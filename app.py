@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, send_from_directory, url_for
 from random import choice
 import mysql_wrapper as mysql
 import os
-import chtimer
+from chtimer import *
 app = Flask(__name__, static_url_path="")
 
 @app.route("/")
@@ -53,9 +53,17 @@ def page_not_found():
 
 @app.route("/<string:url_id>")
 def redir(url_id):
-    killdate = mysql.get_url_killdate(url_id)
+    killdate = to_datetime(mysql.get_url_killdate(url_id))
+    today = to_datetime(get_today())
+    alturl = mysql.get_alturl(url_id)
+    if not today < killdate:
+        return redirect(mysql.get_href_from_db(url_id))
+    else:
+        return redirect(alturl)
 
-    return redirect(mysql.get_href_from_db(url_id))
+@app.route("/urlhasbeenkilled")
+def thatsbeenkilled():
+
 
 @app.route('/favicon.ico')
 def favicon():

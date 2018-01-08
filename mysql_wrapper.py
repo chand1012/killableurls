@@ -100,6 +100,21 @@ def generate_url_id(chars=6, custom=None):
         print(e)
         return None
 
+def get_alturl(url_id):
+    try:
+        connection = db.Connection(host=DBHOST,port=DBPORT,user=DBUSER,passwd=PASSWD,db=DB)
+        dbhandler = connection.cursor()
+        dbhandler.execute("SELECT alturl FROM {}".format(url_id))
+        result = dbhandler.fetchall()
+        alturl = extract_first(result)
+        if alturl!="":
+            return alturl
+        else:
+            return "/urlhasbeenkilled" 
+
+    except Exception as e:
+        print(e)
+        return '/404'
 
 def new_url(url, killdate=get_tomorrow(), killclicks=0, surl="/k", gen_length=6, custom=None):
     url_id = generate_url_id(gen_length, custom) # increase the char amount in production, or just make it increase when we need more

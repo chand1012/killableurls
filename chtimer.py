@@ -19,7 +19,10 @@ def to_datetime(convertstring):
     mth = int(convertstring[5:8])
     d = int(convertstring[9:11])
     yr = int(convertstring[12:])
-    return datetime.datetime(yr, mth, d, hr, mt)
+    if hr==0 and mt==0:
+        return datetime.datetime(yr, mth, d)
+    else:
+        return datetime.datetime(yr, mth, d, hr, mt)
 
 def to_chstring(convertdate): # http://strftime.org
     return convertdate.strftime("%H:%M %m/%d/%Y")
@@ -27,6 +30,9 @@ def to_chstring(convertdate): # http://strftime.org
 def execute_all(funcs):
     for f in funcs:
         f()
+
+def get_today():
+    return to_chstring(datetime.datetime.now())
 
 def add_queue(stime, func):
     queue.update({stime:func})
