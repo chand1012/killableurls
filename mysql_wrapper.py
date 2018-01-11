@@ -7,7 +7,7 @@ from builtins import range
 from future import standard_library
 standard_library.install_aliases()
 import MySQLdb as db
-#from json import loads
+from json import loads
 from random import choice
 from chtimer import *
 import datetime
@@ -110,7 +110,7 @@ def get_alturl(url_id):
         if alturl!="":
             return alturl
         else:
-            return "/urlhasbeenkilled" 
+            return "/k"
 
     except Exception as e:
         print(e)
